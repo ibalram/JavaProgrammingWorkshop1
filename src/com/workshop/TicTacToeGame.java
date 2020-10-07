@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 public class TicTacToeGame {
 	private char[] board = new char[10];
-	
-	public char[] createBoard() {
+
+	public void createBoard() {
 		char[] board = new char[10];
-		Arrays.fill(board,' ');
-		return board;
+		Arrays.fill(board, ' ');
+		this.board = board;
 	}
 
 	public static void main(String[] args) {
