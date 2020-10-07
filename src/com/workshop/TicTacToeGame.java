@@ -36,6 +36,19 @@ public class TicTacToeGame {
 		}
 	}
 	
+	public void userMove() {
+		System.out.println("Enter a position to move(1 to 9): ");
+		int move = Integer.parseInt(sc.nextLine());
+		if(move<0 || move>9 || board[move]!=' ') {
+			System.out.println("Enter a valid move: ");
+			userMove();
+		}else{
+			System.out.println("The position is free to move :");
+			board[move] = userSign;
+			showBoard();
+		}
+	}
+	
 	public void setUserSign(char sign) {
 		this.userSign = sign;
 	}
@@ -59,5 +72,6 @@ public class TicTacToeGame {
 		game.createBoard();
 		game.selectUserSign();
 		game.showBoard();
+		game.userMove();
 	}
 }
