@@ -4,43 +4,60 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class TicTacToeGame {
+	private Scanner sc;
 	private char[] board = new char[10];
 	private char userSign;
 	private char computerSign;
-
+	
+	public TicTacToeGame(Scanner sc) {
+		this.sc = sc;
+	}
 	public void createBoard() {
 		char[] board = new char[10];
 		Arrays.fill(board, ' ');
 		this.board = board;
+		System.out.println("Created empty game board");
+	}
+	
+	public void selectUserSign() {
+		System.out.println("Enter user choice to select mark/sign (X or O):");
+		userSign = sc.nextLine().toUpperCase().charAt(0);
+		if (userSign == 'X')
+			computerSign = 'O';
+		else
+			computerSign = 'X';
+		System.out.println(String.format("User player sign: %s, Computer player sign: %s",userSign, computerSign));
+	}
+	
+	public void showBoard() {
+		for( int i = 1; i<10; ++i) {
+			System.out.print(String.format("[%s]", board[i]));
+			System.out.print((i%3==0)?"\n":"");
+		}
 	}
 	
 	public void setUserSign(char sign) {
 		this.userSign = sign;
 	}
+
 	public char userSign() {
 		return userSign;
 	}
-	
+
 	public void setComputerSign(char sign) {
 		this.computerSign = sign;
 	}
-	public char ComputerSign() {
+
+	public char getComputerSign() {
 		return computerSign;
 	}
+	
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		TicTacToeGame game = new TicTacToeGame();
+		TicTacToeGame game = new TicTacToeGame(sc);
 		game.createBoard();
-		System.out.println("Enter user choice to select mark(X or O):");
-		char userSign = sc.nextLine().charAt(0);
-		game.setUserSign(userSign);
-		char computerSign;
-		if (userSign=='X') 
-			computerSign = 'O';
-		else 
-			computerSign = 'X';
-		game.setComputerSign(computerSign);
-		
+		game.selectUserSign();
+		game.showBoard();
 	}
 }
