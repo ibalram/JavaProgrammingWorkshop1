@@ -43,7 +43,7 @@ public class TicTacToeGame {
 			System.out.println("Enter a valid move: ");
 			userMove();
 		}else{
-			System.out.println("The position is free to move :");
+			System.out.println("The position is free to move:");
 			board[move] = userSign;
 			showBoard();
 		}
