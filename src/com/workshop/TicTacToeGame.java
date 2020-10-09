@@ -88,9 +88,9 @@ public class TicTacToeGame {
 			move = availableCentreOrEdge();
 		if (move == -1)
 			move = rand.nextInt(9) + 1;
-		if (board[move] != ' ') {
+		if (board[move] != ' ')
 			computerMove();
-		} else {
+		else {
 			System.out.println("Computer makes move");
 			board[move] = computerSign;
 			showBoard();
@@ -147,9 +147,8 @@ public class TicTacToeGame {
 		}
 		if (countLeftDiag == 2 && posLeftDiag != -1)
 			return posLeftDiag;
-		if (countRightDiag == 2 && posRightDiag != -1) {
+		if (countRightDiag == 2 && posRightDiag != -1)
 			return posRightDiag;
-		}
 		return -1;
 	}
 
@@ -181,9 +180,8 @@ public class TicTacToeGame {
 
 	public boolean tie() {
 		int count = 0;
-		for (int i = 1; i <= 9; ++i) {
+		for (int i = 1; i <= 9; ++i)
 			count += board[i] != ' ' ? 1 : 0;
-		}
 		return count == 9;
 	}
 
@@ -215,20 +213,17 @@ public class TicTacToeGame {
 		Scanner sc = new Scanner(System.in);
 		TicTacToeGame game = new TicTacToeGame(sc);
 		game.createBoard();
-		// game.selectUserSign();
 		game.playFirst();
 		game.showBoard();
 		while (true) {
 			if (game.isUserTurn()) {
 				game.userMove();
-				if (game.checkWinner(game.getUserSign())) {
+				if (game.checkWinner(game.getUserSign()))
 					break;
-				}
 			} else {
 				game.computerMove();
-				if (game.checkWinner(game.getComputerSign())) {
+				if (game.checkWinner(game.getComputerSign()))
 					break;
-				}
 			}
 			if (game.tie()) {
 				System.out.println("Game is Tie\n");
