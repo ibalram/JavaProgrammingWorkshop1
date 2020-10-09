@@ -82,6 +82,8 @@ public class TicTacToeGame {
 		int move = positionToWin(computerSign);
 		if (move == -1)
 			move = positionToWin(userSign);
+		if(move ==-1)
+			move = availableCorner();
 		if (move == -1)
 			move = rand.nextInt(9) + 1;
 		if (board[move] != ' ') {
@@ -91,6 +93,18 @@ public class TicTacToeGame {
 			board[move] = computerSign;
 			showBoard();
 		}
+	}
+
+	public int availableCorner() {
+		if (board[1] == ' ')
+			return 1;
+		if (board[3] == ' ')
+			return 3;
+		if (board[7] == ' ')
+			return 7;
+		if (board[9] == ' ')
+			return 9;
+		return -1;
 	}
 
 	public int positionToWin(char player) {
