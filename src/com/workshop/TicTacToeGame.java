@@ -43,6 +43,7 @@ public class TicTacToeGame {
 			user = 0;
 			selectComputerSign();
 		}
+		System.out.println(String.format("User player sign: %s, Computer player sign: %s", userSign, computerSign));
 	}
 
 	public void selectUserSign() {
@@ -52,7 +53,6 @@ public class TicTacToeGame {
 			computerSign = 'O';
 		else
 			computerSign = 'X';
-		System.out.println(String.format("User player sign: %s, Computer player sign: %s", userSign, computerSign));
 	}
 
 	public void selectComputerSign() {
@@ -62,7 +62,6 @@ public class TicTacToeGame {
 			userSign = 'O';
 		else
 			userSign = 'X';
-		System.out.println(String.format("User player sign: %s, Computer player sign: %s", userSign, computerSign));
 	}
 
 	public void userMove() {
@@ -79,11 +78,12 @@ public class TicTacToeGame {
 	}
 
 	public void computerMove() {
+		Random rand = new Random();
 		int move = positionToWin(computerSign);
-		if (move == -1) {
-			Random rand = new Random();
+		if (move == -1)
+			move = positionToWin(userSign);
+		if (move == -1)
 			move = rand.nextInt(9) + 1;
-		}
 		if (board[move] != ' ') {
 			computerMove();
 		} else {
