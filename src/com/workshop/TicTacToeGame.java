@@ -211,25 +211,40 @@ public class TicTacToeGame {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		TicTacToeGame game = new TicTacToeGame(sc);
-		game.createBoard();
-		game.playFirst();
-		game.showBoard();
-		while (true) {
-			if (game.isUserTurn()) {
-				game.userMove();
-				if (game.checkWinner(game.getUserSign()))
-					break;
-			} else {
-				game.computerMove();
-				if (game.checkWinner(game.getComputerSign()))
-					break;
-			}
-			if (game.tie()) {
-				System.out.println("Game is Tie\n");
+		boolean repeat = true;
+		while (repeat) {
+			System.out.println("Option:\n1. (Play a new game)\n2. (Exit)");
+			int option = Integer.parseInt(sc.nextLine());
+			switch (option) {
+			case 1:
+				TicTacToeGame game = new TicTacToeGame(sc);
+				game.createBoard();
+				game.playFirst();
+				game.showBoard();
+				while (true) {
+					if (game.isUserTurn()) {
+						game.userMove();
+						if (game.checkWinner(game.getUserSign()))
+							break;
+					} else {
+						game.computerMove();
+						if (game.checkWinner(game.getComputerSign()))
+							break;
+					}
+					if (game.tie()) {
+						System.out.println("Game is Tie\n");
+						break;
+					}
+					game.changeTurn();
+				}
+				break;
+			case 2:
+				repeat = false;
+				break;
+			default:
+				System.out.println("Invalid Entry");
 				break;
 			}
-			game.changeTurn();
 		}
 	}
 }
